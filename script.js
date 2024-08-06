@@ -1,5 +1,4 @@
-function init()  
-{
+function init() {
     startAnimation();   
 
     const keyCodes = {
@@ -26,45 +25,42 @@ function init()
         [2, 4, 7, 9, 11, 14, 16].includes(parseInt(e.target.id)) ? playNote(e.target.id, "noteDark") : playNote(e.target.id, "note");
     }
 
-    window.onkeypress = e => {
-        for (const [key, value] of Object.entries(keyCodes)) 
-        {
-            if(key==e.keyCode)
-            {
+    window.addEventListener('keypress', (e) => {
+        for (const [key, value] of Object.entries(keyCodes)) {
+            if(key == e.keyCode || (key - 32) == e.keyCode) {
                 [2, 4, 7, 9, 11, 14, 16].includes(value) ? playNote(value.toString(), "noteDark") : playNote(value.toString(), "note");
-            } 
+            }
         }
-    }
+    })
 }
-function startAnimation()
-{
-    setTimeout(function(){ 
+function startAnimation() {
+    setTimeout(() => { 
         playNote("1", "note");
         playNote("17", "note"); 
     }, 0);
 
-    setTimeout(function(){ 
+    setTimeout(() => { 
         playNote("3", "note");
         playNote("15", "note"); 
     }, 150);
 
-    setTimeout(function(){ 
+    setTimeout(() => { 
         playNote("5", "note");
         playNote("13", "note"); 
     }, 300);
 
-    setTimeout(function(){ 
+    setTimeout(() => { 
         playNote("6", "note");
         playNote("12", "note"); 
     }, 450);
 
-    setTimeout(function(){ 
+    setTimeout(() => { 
         playNote("8", "note");
         playNote("10", "note"); 
     }, 600);
 }
-function playNote(id, note)
-{
+
+function playNote(id, note) {
     id = id.toString();
     $(id).classList.add(note);
     var audio = new Audio('notes/' + parseInt(id) + '.wav');
@@ -72,30 +68,24 @@ function playNote(id, note)
     audio.play().catch((error) => {});
     setTimeout(function(){ $(id).classList.remove(note); }, 500);
 }
-(function() 
-{
+(function() {
     var fired = 0;
     var timer = null;
-	function onReady(ev) 
-	{
-		if (timer) 
-		{
+	function onReady(ev) {
+		if (timer) {
             clearTimeout(timer);
         }
-		if (fired) 
-		{
+		if (fired) {
             return false;
         }
-		if (document.readyState == "complete") 
-		{
+		if (document.readyState == "complete") {
             fired = 1;
             window.removeEventListener("load", onReady, false);
             document.removeEventListener("DOMContentLoaded", onReady, false);
             document.removeEventListener("readystatechange", onReady, false);
             init();
 		} 
-		else 
-		{
+		else {
             timer = setTimeout(onReady, 1);
         }
     }
@@ -103,8 +93,7 @@ function playNote(id, note)
     document.addEventListener("DOMContentLoaded", onReady, false);
     document.addEventListener("readystatechange", onReady, false);
     timer = setTimeout(onReady, 10);
-	if (document.readyState == "complete") 
-	{
+	if (document.readyState == "complete") {
         onReady();
     }
 } ());
