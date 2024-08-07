@@ -3,25 +3,31 @@ body {
 	padding: 0;
 	font-family: monospace;
 }
+
 #copyright {
 	text-align: center;
     width: 100%;
 }
+
 #piano {
 	width: 833px;
 	height: auto;
 	box-shadow: 0px 0px 30px black;
 	margin: 200px auto;
+	cursor: pointer;
 }
+
 table {
 	border-collapse: collapse;
 }
+
 th, td {
 	border: 3px solid black;
 	width: 10px;
 	height: 240px;
 	padding: 20px;
 }
+
 .darkNote {
 	padding: 20px;
 	height: 150px;
@@ -30,6 +36,7 @@ th, td {
 	left: 41px;
 	top: -38px;
 }
+
 .noNote {
 	padding: 20px;
 	height: 150px;
@@ -39,19 +46,23 @@ th, td {
 	top: -45px;
 	z-index: -2;
 }
+
 .note {
 	animation-duration: 0.5s;
 	animation-name: note;
 }
+
 .noteDark {
 	animation-duration: 0.5s;
 	animation-name: noteDark;
 }
+
 .letter {
 	position: relative;
 	left: 16px;
 	top: 30px;
 }
+
 .darkLetter {
 	color: white;
 	position: absolute;
@@ -61,11 +72,12 @@ th, td {
 
 @keyframes note {
 	0%   {background-color: white;}
-	50%  {background-color: #E75252;}
+	50%  {background-color: #18864B;}
 	100% {background-color: white;}
 }
+
 @keyframes noteDark {
 	0%   {background-color: black;}
-	50%  {background-color: #E75252;}
+	50%  {background-color: #18864B;}
 	100% {background-color: black;}
 }
